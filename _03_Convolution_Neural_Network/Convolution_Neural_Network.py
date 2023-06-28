@@ -14,7 +14,8 @@ import torchvision.transforms as transforms
 import numpy as np
 
 from torch.utils.data import DataLoader
-    
+
+vgg = [96, 96, 'M', 128, 128, 'M', 256, 256, 256, 'M', 512, 512, 512, 'M', 512, 512, 512, 'M']   
 
 class NeuralNetwork(nn.Module):
     def __init__(self, vgg):
@@ -76,8 +77,6 @@ def read_data():
     dataset_val = torchvision.datasets.CIFAR10(root='../data/exp03', train=False, download=False, transform=torchvision.transforms.ToTensor())
     data_loader_train = DataLoader(dataset=dataset_train, batch_size=24, shuffle=True)
     data_loader_val = DataLoader(dataset=dataset_val, batch_size=24, shuffle=False)
-
-    vgg = [96, 96, 'M', 128, 128, 'M', 256, 256, 256, 'M', 512, 512, 512, 'M', 512, 512, 512, 'M']
 
     return dataset_train, dataset_val, data_loader_train, data_loader_val
 
