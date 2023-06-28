@@ -15,7 +15,6 @@ from torch.utils.data import DataLoader
     
 
 class NeuralNetwork(nn.Module):
-<<<<<<< HEAD
     def __init__(self, vgg):
         super(VGG, self).__init__()
         self.features = self._make_layers(vgg)
@@ -51,14 +50,11 @@ class NeuralNetwork(nn.Module):
         layers += [nn.AvgPool2d(kernel_size=1, stride=1)]
         return nn.Sequential(*layers)
 
-=======
->>>>>>> bf116c5ee63f9b9ff33530b0a9e39ebe93386e9b
     pass
 
 def read_data():
     # 这里可自行修改数据预处理，batch大小也可自行调整
     # 保持本地训练的数据读取和这里一致
-<<<<<<< HEAD
     transform_train = transforms.Compose(
     [transforms.Pad(4),
      transforms.ToTensor(),
@@ -85,16 +81,6 @@ def read_data():
 
 def main():
     model = NeuralNetwork(vgg) # 若有参数则传入参数
-=======
-    dataset_train = torchvision.datasets.CIFAR10(root='../data/exp03', train=True, download=True, transform=torchvision.transforms.ToTensor())
-    dataset_val = torchvision.datasets.CIFAR10(root='../data/exp03', train=False, download=False, transform=torchvision.transforms.ToTensor())
-    data_loader_train = DataLoader(dataset=dataset_train, batch_size=256, shuffle=True)
-    data_loader_val = DataLoader(dataset=dataset_val, batch_size=256, shuffle=False)
-    return dataset_train, dataset_val, data_loader_train, data_loader_val
-
-def main():
-    model = NeuralNetwork() # 若有参数则传入参数
->>>>>>> bf116c5ee63f9b9ff33530b0a9e39ebe93386e9b
     current_dir = os.path.dirname(os.path.abspath(__file__))
     parent_dir = os.path.dirname(current_dir)
     model.load_state_dict(torch.load(parent_dir + '/pth/model.pth'))
