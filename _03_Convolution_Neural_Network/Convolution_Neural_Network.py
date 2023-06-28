@@ -81,9 +81,10 @@ def read_data():
     return dataset_train, dataset_val, data_loader_train, data_loader_val
 
 def main():
+    device = torch.device('cpu')
     model = NeuralNetwork(vgg) # 若有参数则传入参数
     current_dir = os.path.dirname(os.path.abspath(__file__))
     parent_dir = os.path.dirname(current_dir)
-    model.load_state_dict(torch.load('/pth/model.pth'))
+    model.load_state_dict(torch.load('/pth/model.pth', map_location=device))
     return model
     
