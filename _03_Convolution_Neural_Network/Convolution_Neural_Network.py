@@ -22,14 +22,14 @@ class VGG(nn.Module):
         super(VGG, self).__init__()
         self.features = self._make_layers(vgg)
         self.dense = nn.Sequential(
-            nn.Linear(512, 4096),
+            nn.Linear(512, 512),
             nn.ReLU(inplace=True),
             nn.Dropout(0.4),
-            nn.Linear(4096, 4096),
+            nn.Linear(512, 512),
             nn.ReLU(inplace=True),
             nn.Dropout(0.4),
         )
-        self.classifier = nn.Linear(4096, 10)
+        self.classifier = nn.Linear(512, 10)
 
     def forward(self, x):
         out = self.features(x)
