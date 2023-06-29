@@ -17,9 +17,9 @@ from torch.utils.data import DataLoader
 
 vgg = [96, 96, 'M', 128, 128, 'M', 256, 256, 256, 'M', 512, 512, 512, 'M', 512, 512, 512, 'M']   
 
-class NeuralNetwork(nn.Module):
+class VGG(nn.Module):
     def __init__(self, vgg):
-        super(NeuralNetwork, self).__init__()
+        super(VGG, self).__init__()
         self.features = self._make_layers(vgg)
         self.dense = nn.Sequential(
             nn.Linear(512, 4096),
@@ -81,7 +81,7 @@ def read_data():
     return dataset_train, dataset_val, data_loader_train, data_loader_val
 
 def main():
-    model = NeuralNetwork(vgg) # 若有参数则传入参数
+    model = VGG(vgg) # 若有参数则传入参数
     current_dir = os.path.dirname(os.path.abspath(__file__))
     parent_dir = os.path.dirname(current_dir)
     model.load_state_dict(torch.load(parent_dir + '/pth/model.pth', map_location='cpu'))
